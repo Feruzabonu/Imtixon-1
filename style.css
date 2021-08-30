@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+.users-list{
+    width: 400px;
+    height: 100vh;
+    border: 1px solid #E7E7E7;
+}
+.users-list-nav{
+    box-sizing: border-box;
+    width: 100%;
+    height: 8vh;
+    padding: 25px 10px;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+.search{
+    width: 93%;
+    height: 35px;
+    background-color: #F1F1F1;
+    border: none;
+    outline-color: #419FD9;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 15px;
+    color: #8292A2;
+}
+.users-list-nav i{
+    font-size: 18px;
+    cursor: pointer;
+    color: #8292A2;
+    width: 45px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+}
+.users-list-nav i:hover{
+    color: #7e8286;
+}
+.users{
+    width: 100%;
+    height:92vh;
+    overflow-y: auto;
+}
+
+/* ==============char========== */
+
+.chat{
+    width: 1150px;
+    height: 100%;
+}
+.chat-nav{
+    width: 100%;
+    height: 8vh;
+    padding: 0px 20px;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 1px solid #E7E7E7;
+    cursor: pointer;
+}
+.person{
+    width: 80%;
+    display: block;
+}
+.person p{
+    font-size: 14px;
+    color: #8292A2;
+    line-height: 13px;
+    margin-top: 5px;
+}
+.person h5{
+    font-size: 15px;
+}
+.person ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+
+.icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+}
+.icons li{
+    margin-left: 10px;
+    color: #A8A8A8;
+    font-size: 17px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;  
+}
+.icons i{
+    width: 45px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icons i:hover{
+    color: #7e8286;
+}
+.messages{
+    width: 100%;
+    height: 85vh;
+    overflow-y: auto;
+    background-image: url(./img/telegram_message.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-right: 1px solid #E7E7E7;
+    border-left: 1px solid #E7E7E7;
+}
+.text{
+    width: 100%;
+    min-height: 50px;
+    background-color: #fff;
+    border: 1px solid #E7E7E7;
+    display: flex;
+    align-items: center;
+}
+.text i{
+    color: #A8A8A8;
+    font-size: 25px;
+    margin: 0px 10px;
+    cursor: pointer;
+    width: 45px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text i:hover{
+    color: #7e8286;
+}
+.text input{
+    width: 87%;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    margin: 0px 5px;
+}
+
+/* =================user-info============ */
+
+.user-info{
+    width: 350px;
+    height: 100vh; 
+    /* onclick uchun================== */
+    display: none;                                                        
+}
+.user-info-nav{
+    width: 100%;
+    height: 8vh;
+    padding: 0px 20px;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-left: 1px solid #E7E7E7;
+}
+.user-info-nav i{
+    color: #A8A8A8;
+    font-size: 18px;
+    cursor: pointer;
+    width: 45px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.user-info-nav i:hover{
+    color: #7e8286;
+}
+.info{
+    width: 100%;
+    height: 92vh;
+    overflow-y: auto;
+}
+
+
+
+
+/* ============Scroll============= */
+
+ /* .info::-webkit-scrollbar {
+     width: 20px;
+ }
+ 
+ .info::-webkit-scrollbar-track {
+    
+     border-radius: 10px;
+ }
+ .info::-webkit-box-shadow{ 
+     inset: 0 0 6px rgba(0,0,0,0.3); 
+    }
+ 
+ .info::-webkit-scrollbar-thumb {
+     border-radius: 10px;
+     
+ }
+ .info::-webkit-box-shadow{ 
+     inset: 0 0 6px rgba(0,0,0,0.5); 
+    } */
