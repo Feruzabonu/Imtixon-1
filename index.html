@@ -17,7 +17,23 @@
                 <i class="fas fa-bars"></i>
             <input class="search" type="text" placeholder="Search">
             </div>
-            <ul class="users"></ul>
+            <div class="users">
+            <ul class="user">
+                <li><div class="user-list-info"> <img src="./img/profil.png" alt="foto"><div><h4>Onajonim</h4><span style="color: #419FD9">You: </span>
+                    <span>Ok</span></div></div></li>
+                <li><p>17:43</p></li>
+            </ul>
+            <ul class="user">
+                <li><div class="user-list-info"> <img src="./img/profil.png" alt="foto"><div><h4>Onajonim</h4><span style="color: #419FD9">You: </span>
+                    <span>Ok</span></div></div></li>
+                <li><p>17:43</p></li>
+            </ul>
+            <ul class="user">
+                <li><div class="user-list-info"> <img src="./img/profil.png" alt="foto"><div><h4>Onajonim</h4><span style="color: #419FD9">You: </span>
+                    <span>Ok</span></div></div></li>
+                <li><p>17:43</p></li>
+            </ul>
+            </div>
         </div>
 
         <!-- =================== Messaging Part =============== -->
@@ -35,10 +51,24 @@
                    <li><i class="fas fa-ellipsis-v"></i></li>
                 </ul>
             </div>
-            <div class="messages"></div>
+            <div class="messages">
+                <ul class="message">
+                    <!-- <li class="from-me">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam assumenda hic, voluptatum blanditiis nesciunt distinctio quos eum repellat repellendus ipsa maiores maxime? Blanditiis distinctio quam labore repellat harum alias at.
+                  
+                       <p>17:43</p>
+                    </li>
+                    <li class="to-me">Lorem ipsum dolor sit amet consectetur 
+                        <p>17:43</p>
+                    </li> -->
+                </ul>
+            </div>
             <div class="text">
                 <i class="fas fa-paperclip"></i>
-                <input type="text" placeholder="Write a message...">
+                <form onsubmit="sendMessage()">
+                    <input type="text" placeholder="Write a message..." class="write">
+                    <input type="submit" value="Submit" class="send">
+                </form>
                 <i class="far fa-smile"></i>
                 <i class="far fa-keyboard"></i>
             </div>

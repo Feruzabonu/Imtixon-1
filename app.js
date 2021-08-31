@@ -17,13 +17,13 @@ let DATA = {
                     id: 1,
                     is_from_me: false,
                     text: "lorem ipsum dolor sit amet...",
-                    time: new Date(),
+                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
                 },
                 {
                     id: 2,
                     is_from_me: true,
-                    text: "lorem ipsum dolor sit amet...",
-                    time: new Date(),
+                    text: "lorem ipsum dolor sit amet... Hello",
+                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
                 },
             ]  
         }
@@ -33,6 +33,45 @@ let DATA = {
     }
 }
 
+                          // ========================== Main Part ===================================
+
+let messagesUser = [];
+let messageElement = document.querySelector(".message");
+let write = document.querySelector(".write");
+console.log(write.value)
+
+
+
+for (let i in DATA.users) {
+    messagesUser = DATA.users[i].messages
+  }
+
+//   const sendMessage=()=>{
+
+//     let text = write.value;
+//     if (text){
+//         let message {
+//             id: messagesUser.length+1,
+//             is_from_me: true,
+//             text: text,
+//             `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+//         }
+//         console.log(message)
+//     }else{
+//       console.log("xato")
+//     }
+//  }
+
+function renderMessage(){
+    messageElement.innerHTML = ""
+    messagesUser.forEach(function(mes){
+        console.log(mes)
+         let newMessage = `<li class = "${mes.is_from_me? "from-me":"to-me"}" id = "message${mes.id}">${mes.text}<p>${mes.time}</p></li>`
+        messageElement.innerHTML += newMessage;
+    });
+}
+
+renderMessage();
 
                          // ========================== additional elements ===========================
 
@@ -50,9 +89,12 @@ let settingLi = document.querySelector(".setting_li");
 let settings = document.querySelector(".settings");
 let userslistNav = document.querySelector(".users-list-nav");
 let humburger = document.querySelector(".humburger");
+let modal_3 = document.querySelector(".modal_3");
+let modal_2 = document.querySelector(".modal_2");
+let modal_1 = document.querySelector(".modal_1");
 
 
-// ================Open user Info=================
+// ================ Open and Close user Info =================
 
 for (let el of Icons){
    let check = false;
@@ -63,6 +105,7 @@ for (let el of Icons){
        setTimeout(function(){el.style.backgroundColor = "#fff"},200);
        if((el.className == "fas fa-columns") && (check===false)){
        userInfo.style.display = "inline-block";
+       chat.style.width = "850px"
        check = true;
        el.style.color = "#168ACD";
     }
@@ -70,12 +113,14 @@ for (let el of Icons){
         userInfo.style.display = "none";
         check = false;
         el.style.color = "#A8A8A8";
+        chat.style.width = "1150px"
      }
      if(check){
         for(let el of Icons){
             el.addEventListener("click", function(e){
                 if((el.className == "fas fa-times")){
                     userInfo.style.display = "none";
+                    chat.style.width = "1150px"
                     for(let el of Icons){
                         el.className === "fas fa-columns"?el.style.color = "#A8A8A8":""
                      }
@@ -88,11 +133,26 @@ for (let el of Icons){
    }) 
 }
 
-// ================Open user Info Modal=================
+// ================Open and Close user Info Modal=================
 
 person.addEventListener("click",function(e){
     userInfModal.style.display = "flex"
 })
+
+let clickCheck_1 = false;
+
+modal_1.addEventListener("click", function(e){
+    clickCheck_1 = true
+  })
+  
+  userInfModal.addEventListener("click", function(e){
+      if(!clickCheck_1){
+          userInfModal.style.display = "none"
+      }else{
+          clickCheck_1 = false
+      }
+  })
+
 for(let el of Icons){
     el.addEventListener("click", function(e){
         if((el.className == "fas fa-times")){
@@ -101,12 +161,25 @@ for(let el of Icons){
     })
 }
 
-// ================== Open Humburgar Modal ===============
+// ================== Open and Close Humburgar Modal , up-down btn ===============
 
-console.log(userslistNav.firstElementChild)
 userslistNav.firstElementChild.addEventListener("click", function(e){
     humburger.style.display = "flex"
 })
+
+let clickCheck_2 = false;
+
+modal_2.addEventListener("click", function(e){
+    clickCheck_2 = true
+  })
+  
+  humburger.addEventListener("click", function(e){
+      if(!clickCheck_2){
+          humburger.style.display = "none"
+      }else{
+          clickCheck_2 = false
+      }
+  })
 
 upDownUl.addEventListener("click", function(e){
     upDown.firstChild.style.backgroundColor = "none";
@@ -124,7 +197,7 @@ upDownUl.addEventListener("click", function(e){
 
 })
 
-// ================== Open Settings Modal ===============
+// ================== Open and Close Settings Modal ===============
 
 settingLi.addEventListener("click", function(e){
     humburger.style.display = "none";
@@ -137,3 +210,18 @@ for(let el of Icons){
          }
     })
 }
+
+let clickCheck_3 = false;
+
+modal_3.addEventListener("click", function(e){
+  clickCheck_3 = true
+})
+
+settings.addEventListener("click", function(e){
+    if(!clickCheck_3){
+        settings.style.display = "none"
+    }else{
+        clickCheck_3 = false
+    }
+})
+
