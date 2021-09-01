@@ -2,9 +2,8 @@ let DATA = {
     users: [
         {
             id: 1,
-            first_name: "First Name",
-            last_name: "Last Name",
-            avatar: "avatar1.png",
+            first_name: "Feruzabonu",
+            avatar: "./img/profil.png",
             bio: "Bio",
             user_name: "@username",
             groups_common: 4,
@@ -26,61 +25,71 @@ let DATA = {
                     time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
                 },
             ]  
+        },
+        {
+            id: 2,
+            first_name: "Onajonim",
+            avatar: "./img/profil.png",
+            bio: "Bio",
+            user_name: "@username",
+            groups_common: 4,
+            shared_links: 15,
+            shared_photos: 20,
+            shared_voice: 15,
+            activity: "online",
+            messages: [
+                {
+                    id: 1,
+                    is_from_me: false,
+                    text: "lorem ipsum dolor sit amet...fffffffffffff",
+                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                },
+                {
+                    id: 2,
+                    is_from_me: false,
+                    text: "lorem ipsum dolor sit amet... fffffffffffff",
+                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                },
+            ]  
+        },
+        {
+            id: 3,
+            first_name: "Nilufar",
+            avatar: "./img/profil.png",
+            bio: "Bio",
+            user_name: "@username",
+            groups_common: 4,
+            shared_links: 15,
+            shared_photos: 20,
+            shared_voice: 15,
+            activity: "online",
+            messages: [
+                {
+                    id: 1,
+                    is_from_me: true,
+                    text: "hello",
+                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                },
+                {
+                    id: 2,
+                    is_from_me: true,
+                    text: "hi",
+                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                },
+            ]  
         }
     ],
+    
     me: {
 
     }
 }
-
-                          // ========================== Main Part ===================================
-
-let messagesUser = [];
-let messageElement = document.querySelector(".message");
-let write = document.querySelector(".write");
-console.log(write.value)
-
-
-
-for (let i in DATA.users) {
-    messagesUser = DATA.users[i].messages
-  }
-
-//   const sendMessage=()=>{
-
-//     let text = write.value;
-//     if (text){
-//         let message {
-//             id: messagesUser.length+1,
-//             is_from_me: true,
-//             text: text,
-//             `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
-//         }
-//         console.log(message)
-//     }else{
-//       console.log("xato")
-//     }
-//  }
-
-function renderMessage(){
-    messageElement.innerHTML = ""
-    messagesUser.forEach(function(mes){
-        console.log(mes)
-         let newMessage = `<li class = "${mes.is_from_me? "from-me":"to-me"}" id = "message${mes.id}">${mes.text}<p>${mes.time}</p></li>`
-        messageElement.innerHTML += newMessage;
-    });
-}
-
-renderMessage();
-
-                         // ========================== additional elements ===========================
 
 // ===================get Elements=================
 
 let Icons = document.querySelectorAll("i");
 let userInfo = document.querySelector(".user-info");
 let chat = document.querySelector(".chat");
-let person = document.querySelector(".person");
 let userInfModal = document.querySelector(".user-info-modal");
 let upDownUl = document.querySelector(".up-down-ul");
 let upDown = document.querySelector(".up-down");
@@ -92,7 +101,84 @@ let humburger = document.querySelector(".humburger");
 let modal_3 = document.querySelector(".modal_3");
 let modal_2 = document.querySelector(".modal_2");
 let modal_1 = document.querySelector(".modal_1");
+let users = document.querySelector(".users");
+let messageElement = document.querySelector(".message");
+let write = document.querySelector(".write");
+let person = document.querySelector(".person");
 
+                          // ========================== Main Part ==================================
+
+// ================= The List of Peaple ==================
+
+function userList(){
+
+    DATA.users.forEach(function(user){
+
+        user.messages.forEach(function(el){
+            
+            if(el.id==user.messages.length){
+                let newuser = `<ul class="user" ><li><div class="user-list-info"> <img src=${user.avatar} alt="foto"><div><h4>${user.first_name}</h4><span style="color: #419FD9">${user.is_from_me? "You": user.first_name} : </span>
+                <span>${el.text.slice(0,20)}...</span></div></div></li>
+            <li><p>${el.time}</p></ul></li>`;
+            users.innerHTML += newuser; 
+            }     
+        }) 
+    })
+   
+}
+userList();
+
+// ================= OnClick, choose the Person ==================
+
+let user = document.querySelectorAll("ul.user")
+
+let a=false;
+  for(let i=0;i<user.length;i++){
+      user[i].addEventListener("click",function(e){
+          a=true;
+          console.log(a);
+          renderMessage((i+1));
+          
+      })
+      if(a){
+          a=false;
+          break
+      }
+  }
+  
+
+// ================= Chat ==================
+
+let messagesUser = [];
+
+
+for (let i in DATA.users) {
+    messagesUser = DATA.users[i].messages
+  }
+ let messages = window.localStorage.getItem("messagesUser");
+  messages = JSON.parse(messages)
+
+
+function renderMessage(key){
+    
+    DATA.users.forEach(function(el){
+        if(el.id==key){
+            messageElement.innerHTML = ""
+            el.messages.forEach(function(mes){
+                 let newMessage = `<li class = "${mes.is_from_me? "from-me":"to-me"}" id = "message${mes.id}">${mes.text}<p>${mes.time}</p></li>`
+                messageElement.innerHTML += newMessage;
+                person.firstElementChild.textContent = `${el.first_name}`;
+                person.lastElementChild.textContent = `${el.activity}`
+            });
+        }
+    })
+  
+
+}
+
+renderMessage(1);
+
+                         // ========================== additional elements ===========================
 
 // ================ Open and Close user Info =================
 

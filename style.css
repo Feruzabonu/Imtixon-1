@@ -207,8 +207,8 @@ li.to-me p{
     margin-left: 10px;
 }
 li.from-me{
-    background-color: #EFFDDE;
-    border-radius: 15px 15px 0px 15px;
+    background-color: #e3fcc5;
+    border-radius: 20px 20px 0px 20px;
     padding: 8px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     margin-bottom: 5px;
@@ -216,7 +216,7 @@ li.from-me{
 }
 li.to-me{
     background-color: #fff;
-    border-radius: 15px 15px 15px 0px;
+    border-radius: 20px 20px 20px 0px;
     padding: 8px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     margin-bottom: 5px;
