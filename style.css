@@ -255,7 +255,17 @@ li.to-me{
     margin: 0px 5px;
 }
 input.send{
-    /* display: none; */
+    display: none;
+
+}
+.text .fa-telegram-plane{
+    display: none;
+    color: #419FD9;
+    
+}
+.text .fa-telegram-plane:hover{
+
+    color: #419FD9;
 }
 /* =================user-info============ */
 

@@ -17,13 +17,13 @@ let DATA = {
                     id: 1,
                     is_from_me: false,
                     text: "lorem ipsum dolor sit amet...",
-                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                    time: `12 : 12`,
                 },
                 {
                     id: 2,
                     is_from_me: true,
                     text: "lorem ipsum dolor sit amet... Hello",
-                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                    time: `17 : 08`,
                 },
             ]  
         },
@@ -44,13 +44,13 @@ let DATA = {
                     id: 1,
                     is_from_me: false,
                     text: "lorem ipsum dolor sit amet...fffffffffffff",
-                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                    time: `10 : 45`,
                 },
                 {
                     id: 2,
                     is_from_me: false,
                     text: "lorem ipsum dolor sit amet... fffffffffffff",
-                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                    time: `19 : 00`,
                 },
             ]  
         },
@@ -71,13 +71,13 @@ let DATA = {
                     id: 1,
                     is_from_me: true,
                     text: "hello",
-                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                    time: `7 : 09`,
                 },
                 {
                     id: 2,
                     is_from_me: true,
                     text: "hi",
-                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                    time: `22 : 10`,
                 },
             ]  
         }
@@ -105,13 +105,22 @@ let modal_3 = document.querySelector(".modal_3");
 let modal_2 = document.querySelector(".modal_2");
 let modal_1 = document.querySelector(".modal_1");
 let users = document.querySelector(".users");
+let sendI = document.querySelector(".send_i");
 
 
                           // ========================== Main Part ==================================
-let data = window.localStorage.getItem("DATA")
 
-if(!data){
-    window.localStorage.setItem('DATA', JSON.stringify(DATA))
+
+if(!window.localStorage.getItem("DATA")){
+    window.localStorage.setItem('DATA', JSON.stringify(DATA));
+    DATA = window.localStorage.getItem("DATA");
+    DATA = JSON.parse(DATA) 
+}
+
+
+else{
+    DATA = window.localStorage.getItem("DATA");
+    DATA = JSON.parse(DATA)
 }
 
 
@@ -123,7 +132,7 @@ function userList(){
         user.messages.forEach(function(el){
             
             if(el.id==user.messages.length){
-                let newuser = `<ul class="user" active="${user.id}" ><li><div class="user-list-info"> <img src=${user.avatar} alt="foto"><div><h4>${user.first_name}</h4><span style="color: #419FD9">${user.is_from_me? "You": user.first_name} : </span>
+                let newuser = `<ul class="user" active="${user.id}" ><li><div class="user-list-info"> <img src=${user.avatar} alt="foto"><div><h4>${user.first_name}</h4><span style="color: #419FD9">${el.is_from_me? "You": user.first_name} : </span>
                 <span>${el.text.slice(0,20)}...</span></div></div></li>
             <li><p>${el.time}</p></ul></li>`;
             users.innerHTML += newuser; 
@@ -139,6 +148,7 @@ let messageElement = document.querySelector(".message");
 let person = document.querySelector(".person");
 let form = document.querySelector("form");
 let write = document.querySelector(".write");
+let send = document.querySelector(".send");
 
 
 function renderMessage(){
@@ -148,9 +158,13 @@ function renderMessage(){
             item.messages.forEach(function(mes,id){
                 let newMessage = `<li class = "${mes.is_from_me? "from-me":"to-me"}" id = "message${mes.id}">${mes.text}<p>${mes.time}</p></li>`
                 messageElement.innerHTML += newMessage;
+                
             })
+            
         }
+        
     })
+   
 }
 
     renderMessage() 
@@ -182,6 +196,7 @@ form.addEventListener("submit",function(e){
 
     let text = write.value;
     if(text){
+       
         DATA.users.forEach(function(item){
             if(item.selected){
                 item.messages.push({
@@ -191,8 +206,8 @@ form.addEventListener("submit",function(e){
                     time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
                 })
                 window.localStorage.setItem("DATA", JSON.stringify(DATA));
-                renderMessage()
-             
+                renderMessage();
+             write.value = "";
             }
         }
         
@@ -204,6 +219,25 @@ form.addEventListener("submit",function(e){
 }})
 
 
+sendI.addEventListener("click",function(e){
+    let text = write.value;
+    if(text){
+        DATA.users.forEach(function(item){
+            if(item.selected){
+                item.messages.push({
+                    id: item.messages.length+1,
+                    is_from_me: true,
+                    text: text,
+                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                })
+                window.localStorage.setItem("DATA", JSON.stringify(DATA));
+                renderMessage();
+             write.value = "";
+            }
+        } 
+        )
+}
+})
 
 
 
@@ -211,6 +245,13 @@ form.addEventListener("submit",function(e){
 
 
                          // ========================== additional elements ===========================
+
+// =================== Show send icon ==============
+
+write.addEventListener("input", function(e){
+        form.lastElementChild.style.display = "flex";
+})
+
 
 // ================ Open and Close user Info =================
 
