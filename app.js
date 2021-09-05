@@ -317,7 +317,7 @@ let DATA = {
                 {
                     id: 3,
                     is_from_me: true,
-                    text: "Usmon yaxshimiz)",
+                    text: "Usmon yaxshimi)",
                     time: `18 : 10`,
                 },
             ]  
@@ -450,7 +450,8 @@ else{
 // ================== Create People ===================
 
 function userList(){
-    users.innerHTML = ""
+    users.innerHTML = "";
+ 
     DATA.users.forEach(function(user){
        
         user.messages.forEach(function(el){
@@ -463,6 +464,7 @@ function userList(){
             }     
         }) 
     })
+  
    
 }
 userList();
@@ -536,26 +538,32 @@ function renderMessage(){
 
 // =================== Find selected person ============
 
-user.forEach(function(people,id){
-    people.addEventListener("click",function(e){
-       let active = people.getAttribute("active");
-       active-=0;
-       DATA.users.forEach(function(item,key){
-           if((key+1)==active){
-               item.selected = true
-           }else{
-               item.selected = false
-           }
-       })
 
-       window.localStorage.setItem("DATA", JSON.stringify(DATA))
-
-       renderMessage()
-
-      
-    })
+    user.forEach(function(people,id){
+        people.addEventListener("click",function(e){
+            e.preventDefault()
+            console.log(e)
+           let active = people.getAttribute("active");
+           active-=0;
+           DATA.users.forEach(function(item,key){
+               if((key+1)==active){
+                   item.selected = true
+               }else{
+                   item.selected = false
+               }
+           })
     
-})
+           window.localStorage.setItem("DATA", JSON.stringify(DATA))
+    
+           renderMessage()
+    
+          
+        })
+        
+    })
+
+
+
 
 // =============== Send new message ============
 
@@ -603,33 +611,80 @@ sendI.addEventListener("click",function(e){
 
 // ============== Search ===============
 
-search.addEventListener("keyup", function(e){
+search.addEventListener("input", function(e){
+    e.preventDefault()
     let query = e.target.value.toLowerCase();
     let searchedList = document.querySelectorAll(".user");
     searchedList.forEach(function(searched){
         const myArray = searched.innerText.split("\n");
         myArray[0]=myArray[0].toLowerCase();
         if(myArray[0].indexOf(query) != -1){
-            searched.style.display = "block";
+            searched.style.display = "flex";
         }else{
             searched.style.display = "none"
         }
     })
+    exitSearch.addEventListener("click", function(e){
+        e.preventDefault()
+        search.value = "";
+     userList()
+     console.log(user)
+    
+    })
 })
 
 search.addEventListener("input", function(e){
+    e.preventDefault()
     search.style.color = "#000";
 })
 
-exitSearch.addEventListener("click", function(e){
-    search.value = "";
-    userList();
+// =================== Sticker Btn ============
+let stickerBtn = document.querySelector(".sticker-btn");
+let sticker = document.querySelector(".sticker");
+let icons = document.querySelectorAll(".icon");
+let select = document.querySelector(".select");
+let sendBtn = document.querySelector(".send-btn")
+
+stickerBtn.addEventListener("click", function(e){
+    sticker.style.display = "block"
+}) 
+
+sticker.addEventListener("mouseleave", function(e){
+    sticker.style.display = "none"
 })
 
+icons.forEach(function(el){
+    el.addEventListener("click",function(e){
+        let icon = e.target 
+     select.innerHTML = `<img style="width: 50px; height: 50px; display:block;" src=${e.target.src} alt="">`
+    })
+})
+console.log(select.innerHTML)
+sendBtn.addEventListener("click", function(e){
+    
+        DATA.users.forEach(function(item){
+            if(item.selected){
+                item.messages.push({
+                    id: item.messages.length+1,
+                    is_from_me: true,
+                    text: select.innerHTML,
+                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
+                })
+                window.localStorage.setItem("DATA", JSON.stringify(DATA));
+                renderMessage();
+             select.innerHTML = "";
+             sticker.style.display = "none"
+            }
+        } 
+        )
+
+})
 
 
 
                          // ========================== additional elements ===========================
+
+
 
 // =================== Show send icon ==============
 

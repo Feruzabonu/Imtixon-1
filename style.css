@@ -832,3 +832,76 @@ margin-right: 20px;
  margin: 0px 20px 0px 5px;
 }
 
+/* =================== Sticker ============ */
+
+.sticker{
+    width: 400px;
+    height: 160px;
+    position: absolute;
+    bottom: 60px;
+    right: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    display: none;
+}
+.sticker-nav{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #E7E7E7;
+}
+.sticker-nav div{
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.sticker-body{
+    width: 100%;
+    height: 38%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #E7E7E7;
+}
+.sticker-body div{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.sticker-body img{
+    width: 30px;
+    height: 30px;
+}
+.sticker-footer{
+    width: 100%;
+    height: 50%;
+    padding: 7px;
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+}
+.sticker-footer img{
+    width: 30px !important;
+    height: 30px !important;
+}
+.sticker-footer i{
+    font-size: 25px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    color: #9c9c9c;
+}
