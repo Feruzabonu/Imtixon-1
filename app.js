@@ -405,7 +405,32 @@ let DATA = {
            activity: "online",
            avatar: "./img/profil.png",
            phone_number: "+998 93 529 82 92",
-    }
+    },
+
+    stickers:[
+        {
+         
+          s1:"😅", 
+          s2:"😊", 
+          s3:"😐", 
+          s4:"😂", 
+          s5:"🧐", 
+          s6:"😁", 
+          s7:"🙊", 
+          s8:"😘", 
+        },
+        {
+            
+            s1:"😅", 
+            s2:"😊", 
+            s3:"😐", 
+            s4:"😂", 
+            s5:"🧐", 
+            s6:"😁", 
+            s7:"🙊", 
+            s8:"😘", 
+          }
+    ]
 }
 
 // ===================get Elements=================
@@ -427,7 +452,8 @@ let modal_1 = document.querySelector(".modal_1");
 let users = document.querySelector(".users");
 let sendI = document.querySelector(".send_i");
 let search = document.querySelector(".search");
-let exitSearch = document.querySelector(".exit_search");
+
+
 
 
                           // ========================== Main Part ==================================
@@ -624,13 +650,6 @@ search.addEventListener("input", function(e){
             searched.style.display = "none"
         }
     })
-    exitSearch.addEventListener("click", function(e){
-        e.preventDefault()
-        search.value = "";
-     userList()
-     console.log(user)
-    
-    })
 })
 
 search.addEventListener("input", function(e){
@@ -643,42 +662,21 @@ let stickerBtn = document.querySelector(".sticker-btn");
 let sticker = document.querySelector(".sticker");
 let icons = document.querySelectorAll(".icon");
 let select = document.querySelector(".select");
-let sendBtn = document.querySelector(".send-btn")
+let sendBtn = document.querySelector(".send-btn");
+let stickerBody = document.querySelector(".sticker-body");
 
-stickerBtn.addEventListener("click", function(e){
-    sticker.style.display = "block"
-}) 
+function renderSticker(){
+   console.log(DATA.stickers[0])
+    DATA.stickers.forEach(function(sticker,key){
+        console.log(key)
+            stickerBody.innerHTML+=`<ul><li>${sticker.s1}</li></ul>`;
 
-sticker.addEventListener("mouseleave", function(e){
-    sticker.style.display = "none"
-})
-
-icons.forEach(function(el){
-    el.addEventListener("click",function(e){
-        let icon = e.target 
-     select.innerHTML = `<img style="width: 50px; height: 50px; display:block;" src=${e.target.src} alt="">`
+     
+       
     })
-})
-console.log(select.innerHTML)
-sendBtn.addEventListener("click", function(e){
-    
-        DATA.users.forEach(function(item){
-            if(item.selected){
-                item.messages.push({
-                    id: item.messages.length+1,
-                    is_from_me: true,
-                    text: select.innerHTML,
-                    time: `${new Date().getHours()}  :   ${new Date().getMinutes()}`,
-                })
-                window.localStorage.setItem("DATA", JSON.stringify(DATA));
-                renderMessage();
-             select.innerHTML = "";
-             sticker.style.display = "none"
-            }
-        } 
-        )
+}
 
-})
+renderSticker()
 
 
 

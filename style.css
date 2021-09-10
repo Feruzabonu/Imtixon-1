@@ -42,17 +42,15 @@ body{
     border-radius: 3px 0px 0px 3px;
     font-size: 15px;
     color: #8292A2;
-    padding-right: 50px;
+  
 }
-.exit_search{
-    font-size: 16px !important;
-    background-color: #F1F1F1 !important ;
-    border-radius: 0px !important;
-    height: 32px !important;
-    position: absolute;
-    top: 12.5px;
-    right: 6px;
-}
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    height: 1em;
+    width: 1em;
+    background: url(./img/exit_search.svg) no-repeat 50% 50%;
+    cursor: pointer;
+  }
 .search:focus{
     background-color:#fff;
 }
@@ -836,14 +834,14 @@ margin-right: 20px;
 
 .sticker{
     width: 400px;
-    height: 160px;
+    height: auto;
     position: absolute;
     bottom: 60px;
-    right: 10px;
+    right: 305px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-    display: none;
+    /* display: none; */
 }
 .sticker-nav{
     width: 100%;
@@ -871,14 +869,7 @@ margin-right: 20px;
     justify-content: space-around;
     border-bottom: 1px solid #E7E7E7;
 }
-.sticker-body div{
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
+
 .sticker-body img{
     width: 30px;
     height: 30px;
@@ -891,17 +882,4 @@ margin-right: 20px;
     justify-content: space-around;
     cursor: pointer;
 }
-.sticker-footer img{
-    width: 30px !important;
-    height: 30px !important;
-}
-.sticker-footer i{
-    font-size: 25px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    color: #9c9c9c;
-}
+
